@@ -1,0 +1,19 @@
+<h1>WikiSheeky</h1>
+
+<div class="container text-center">
+  <h2>Articles</h2>
+  <%= link_to "Write new article", new_article_path %>
+  <ul class="list-group">
+    <% @articles.each do |a| %>
+    <li class="list-group-item">
+      <span class="badge"> likes: 25 </span>
+      <h3> <%= Kramdown::Document.new(a.title).to_html.html_safe %> </h3>
+      <%= link_to "See More", article_path(a) %>
+      <%= link_to "Edit", edit_article_path(a) %>
+      <%= button_to "Delete", article_path(a), method: :delete, data: {confirm: "Are you sure?"} %>
+    </li>
+  <%end%>
+  </ul>
+</div>
+
+
